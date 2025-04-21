@@ -9,7 +9,7 @@ def get_todo():
   return json_text
 
 @app.route('/todos', methods=['POST'])
-def add_new_todo():
+def add_new_todos():
     request_body = request.json
     print("Incoming request with the following body", request_body)
     todos.append(dict(request_body))
