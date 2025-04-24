@@ -3,17 +3,22 @@ app = Flask(__name__)
 
 todos = [{ "label": "My first task", "done": False }]
 
+@app.route('/todos', methods=['GET'])
+def hello_world():
+    return jsonify(todos)
+
 @app.route('/todos', methods= ['GET'])
 def get_todo():
   json_text = jsonify(todos)
   return json_text
 
 @app.route('/todos', methods=['POST'])
-def add_new_todos():
+def add_new_todo():
     request_body = request.json
     print("Incoming request with the following body", request_body)
     todos.append(dict(request_body))
     return todos
+
 
 @app.route('/todos/<int:position>', methods=['DELETE'])
 def delete_todo(position):
